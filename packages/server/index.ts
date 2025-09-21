@@ -1,16 +1,14 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import router from './route';
 
-import { chatService } from './services/chat.service';
-import { chatController } from './controllers/chat.controller';
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(router);
 
 const port = process.env.PORT || 3000;
-
-app.post('/api/chat', chatController.sendMessage);
 
 app.listen(port, () => {
    console.log(`Server is running on http://localhost:${port}`);
